@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.nio.file.FileStore;
 import java.time.LocalDateTime;
 
 @Entity
@@ -37,4 +38,5 @@ public class Image {
     @Column
     @Lob
     private byte[] file;
+
 }
