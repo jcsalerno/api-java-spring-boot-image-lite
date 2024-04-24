@@ -1,11 +1,9 @@
 package jcsalerno.com.br.imageliteapi.application.images;
-
 import jcsalerno.com.br.imageliteapi.domain.enaums.ImageExtension;
 import jcsalerno.com.br.imageliteapi.domain.entity.Image;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -22,4 +20,16 @@ public class ImageMapper {
                 .build();
         return image;
     }
+
+
+    public ImageDTO imageToDTO(Image image, String url) {
+        return ImageDTO.builder()
+                .url(url)
+                .extension(image.getExtension().name())
+                .name(image.getName())
+                .size(image.getSize())
+                .uploadData(image.getUploadData().toLocalDate())
+                .build();
+    }
+
 }

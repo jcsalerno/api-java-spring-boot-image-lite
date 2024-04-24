@@ -40,7 +40,6 @@ public class Image {
     public String getFileName(){
         return getName().concat(".").concat(getExtension().name());
 
-
     }
 
 }
