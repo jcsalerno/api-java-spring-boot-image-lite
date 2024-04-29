@@ -7,16 +7,18 @@ import { useState } from "react";
 export default function GaleriaPage() {
   const useService = useImageService();
   const [images, setImages] = useState<Image[]>([]);
+  const [query, setQuery] = useState<string>("");
+  const [extension, setExtension] = useState<string>("");
 
   async function searchImages() {
-    const result = await useService.buscar();
+    const result = await useService.buscar(query, extension);
     setImages(result);
-    console.table(images);
   }
 
   function renderImageCard(image: Image) {
     return (
       <ImageCard
+        key={image.url}
         nome={image.name}
         src={image.url}
         tamanho={image.size}
@@ -35,10 +37,17 @@ export default function GaleriaPage() {
         <div className="flex space-x-4">
           <input
             type="text"
+            onChange={(event) => setQuery(event.target.value)}
             className="border px-3 py-2 rounded-lg text-gray-900"
           />
-          <select className="border px-4 py-2 rounded-log text-gray-900">
-            <option>All Formats</option>
+          <select
+            onChange={(event) => setExtension(event.target.value)}
+            className="border px-4 py-2 rounded-log text-gray-900"
+          >
+            <option value="">All Formats</option>
+            <option value="PNG">PNG</option>
+            <option value="JPEG">JPEG</option>
+            <option value="GIF">GIF</option>
           </select>
           <button
             className="bg-blue-500 text-white px-4 py-2 rounded-lg"
