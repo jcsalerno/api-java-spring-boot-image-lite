@@ -1,4 +1,5 @@
 package jcsalerno.com.br.imageliteapi.application.images;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
 import java.time.LocalDate;
@@ -11,9 +12,8 @@ public class ImageDTO {
     private String extension;
     private String name;
     private Long size;
-    private LocalDate uploadData; // Alterado para LocalDate
-
-    // Adicionado o método setter para uploadData
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate uploadData;
     public void setUploadData(LocalDate uploadData) {
         this.uploadData = uploadData;
     }
