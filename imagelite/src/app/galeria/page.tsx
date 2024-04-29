@@ -14,19 +14,27 @@ export default function GaleriaPage() {
     console.table(images);
   }
 
+  function renderImageCard(image: Image) {
+    return (
+      <ImageCard
+        nome={image.name}
+        src={image.url}
+        tamanho={image.size}
+        dataUpload={image.uploadData}
+      />
+    );
+  }
+
+  function renderImageCards() {
+    return images.map(renderImageCard);
+  }
+
   return (
     <Template>
       <button className="bg-gay-500" onClick={searchImages}>
         Clique para mudar
       </button>
-      <section className="grid grid-cols-3 gap-8">
-        <ImageCard
-          nome="{nomeImage}"
-          tamanho="10MB"
-          dataUpload="01/01/2024"
-          src=""
-        />
-      </section>
+      <section className="grid grid-cols-3 gap-8">{renderImageCards()}</section>
     </Template>
   );
 }
